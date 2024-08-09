@@ -1,9 +1,8 @@
-require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const app = express()
-const port = 3000
+const {port} = require("./config")
 
 app.use(cors())
 app.use(morgan("dev"))
@@ -13,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/", (req, res) => {
     try {
         let welcomeMessage = {
-            message: "Welcome to Whater is"
+            message: "Welcome to Whater if"
         }
         res.json(welcomeMessage)
     } catch (error) {
