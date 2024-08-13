@@ -2,7 +2,7 @@ const axios = require('axios');
 const { openMeteoBaseUrl } = require('../config');
 
 module.exports = {
-  getWather: async (latitude, longitude) => {
+  getWhater: async (latitude, longitude) => {
     const url = `${openMeteoBaseUrl}?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
 
     try {

@@ -1,8 +1,8 @@
 const cacheManager = require('../utils/caching.utils');
-const { getWather } = require('../services/whater.services');
+const { getWhater } = require('../services/whater.services');
 
 module.exports = {
-  getWather: async (req, res, next) => {
+  getWhater: async (req, res, next) => {
     const { latitude, longitude } = req.query;
 
     if (!latitude || !longitude) {
@@ -24,10 +24,10 @@ module.exports = {
       }
 
       // If the data is not in the cache, fetch it from the API
-      const watherData = await getWather(latitude, longitude);
-      await cacheManager.setex(cacheKey, JSON.stringify(watherData));
+      const whaterData = await getWhater(latitude, longitude);
+      await cacheManager.setex(cacheKey, JSON.stringify(whaterData));
 
-      return res.json({ source: 'api', data: watherData });
+      return res.json({ source: 'api', data: whaterData });
     } catch (error) {
       next(error);
     }
