@@ -1,0 +1,6 @@
+###
+GET http://localhost:3000/
+
+###
+###
+GET http://localhost:3000/weather/search?latitude=51.509865&longitude=-0.118092
