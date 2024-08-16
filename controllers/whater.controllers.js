@@ -1,4 +1,4 @@
-const cacheManager = require('../utils/caching.utils');
+const {cacheManager} = require('../utils/caching.utils');
 const { getWhater } = require('../services/whater.services');
 
 module.exports = {

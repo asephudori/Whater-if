@@ -10,6 +10,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/weather', whaterRouter);
+
 app.use('/', (req, res) => {
   try {
     let welcomeMessage = {
@@ -21,8 +23,6 @@ app.use('/', (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
-app.use('/weather', whaterRouter);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
