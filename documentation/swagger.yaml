@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: "Weather API"
+  description: "API for retrieving weather information based on latitude and longitude."
+  version: "1.0.0"
+
+servers:
+  - url: "http://localhost:3000/weather/search"
+
+paths:
+  /weather:
+    get:
+      summary: "Get weather data"
+      description: "Retrieve weather information based on latitude and longitude."
+      operationId: "getWeather"
+      tags:
+        - "Weather"
+      parameters:
+        - name: "latitude"
+          in: "query"
+          required: true
+          description: "Latitude of the location"
+          schema:
+            type: "string"
+        - name: "longitude"
+          in: "query"
+          required: true
+          description: "Longitude of the location"
+          schema:
+            type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  source:
+                    type: "string"
+                    example: "cache"
+                  data:
+                    type: "object"
+                    description: "Weather data retrieved from cache or API"
+        400:
+          description: "Bad Request - Missing or invalid latitude/longitude"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  status:
+                    type: "boolean"
+                    example: false
+                  message:
+                    type: "string"
+                    example: "Bad request"
+                  error:
+                    type: "string"
+                    example: "Latitude and longitude parameters are required"
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  status:
+                    type: "boolean"
+                    example: false
+                  message:
+                    type: "string"
+                    example: "Internal server error"
