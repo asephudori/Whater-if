@@ -5,10 +5,10 @@ info:
   version: "1.0.0"
 
 servers:
-  - url: "http://localhost:3000/weather/search"
+  - url: "http://localhost:3000"
 
 paths:
-  /weather:
+  /weather/search:
     get:
       summary: "Get weather data"
       description: "Retrieve weather information based on latitude and longitude."
