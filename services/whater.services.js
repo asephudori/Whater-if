@@ -6,7 +6,7 @@ module.exports = {
     const url = `${openMeteoBaseUrl}?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
 
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {setTimeout: 5000});
       return response.data;
     } catch (error) {
       console.error('Error fetching weather data:', error);
