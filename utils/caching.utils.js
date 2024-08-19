@@ -8,16 +8,13 @@ client.on('error', (error) => {
   console.error('Redis error: ', error);
 });
 
+client.connect().catch(console.error);
+
 module.exports = {
   cacheManager: {
     get: async (key) => {
       try {
-        const value = await new Promise((resolve, reject) => {
-          client.get(key, (error, reply) => {
-            if (error) return reject(error);
-            resolve(reply);
-          });
-        });
+        const value = await client.get(key);
         return value;
       } catch (error) {
         console.error('Error getting data from cache:', error);
@@ -26,12 +23,7 @@ module.exports = {
     },
     setex: async (key, value, ttl = cacheTTL) => {
       try {
-        await new Promise((resolve, reject) => {
-          client.setex(key, ttl, value, (error) => {
-            if (error) return reject(error);
-            resolve();
-          });
-        });
+        await client.setEx(key, ttl, value);
       } catch (error) {
         console.error('Error setting data to cache:', error);
         throw error;
